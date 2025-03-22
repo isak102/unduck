@@ -1,45 +1,11 @@
 import { bangs } from "./bang";
-import "./global.css";
-
-// TODO: Mount a svelte component instead of this, but still needs to be PWA
+import { mount } from 'svelte';
+import App from "./app.svelte";
 
 function noSearchDefaultPageRender() {
-  const app = document.querySelector<HTMLDivElement>("#app")!;
-  app.innerHTML = `
-    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;">
-      <div class="content-container">
-        <h1>Improved Und*ck</h1>
-        <p>DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all of DuckDuckGo's bangs.</a></p>
-        <div class="url-container"> 
-          <input 
-            type="text" 
-            class="url-input"
-            value="https://unduck.link?q=%s"
-            readonly 
-          />
-          <button class="copy-button">
-            <img src="/clipboard.svg" alt="Copy" />
-          </button>
-        </div>
-      </div>
-      <footer class="footer">
-        <a href="https://github.com/isak102/unduck" target="_blank">github</a>
-      </footer>
-    </div>
-  `;
-
-  const copyButton = app.querySelector<HTMLButtonElement>(".copy-button")!;
-  const copyIcon = copyButton.querySelector("img")!;
-  const urlInput = app.querySelector<HTMLInputElement>(".url-input")!;
-
-  copyButton.addEventListener("click", async () => {
-    await navigator.clipboard.writeText(urlInput.value);
-    copyIcon.src = "/clipboard-check.svg";
-
-    setTimeout(() => {
-      copyIcon.src = "/clipboard.svg";
-    }, 2000);
-  });
+  mount(App, {
+    target: document.querySelector("#app")!,
+  })
 }
 
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
