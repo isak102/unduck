@@ -1,6 +1,7 @@
 <script lang="ts">
   import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
   import BangSearchResults from "./bang-search-results.svelte";
+  import { SvelteQueryDevtools } from "@tanstack/svelte-query-devtools";
 
   const clipboardImg = "/clipboard.svg";
   const clipboardCheckImg = "/clipboard-check.svg";
@@ -54,13 +55,14 @@
           placeholder="Search bangs..."
           bind:value={searchBangInput}
         />
-        <BangSearchResults searchQuery={searchBangInput} />
+        <BangSearchResults searchQuery={searchBangInput.trim()} />
       </div>
     </div>
     <footer class="footer">
       <a href="https://github.com/isak102/unduck" target="_blank">github</a>
     </footer>
   </div>
+  <SvelteQueryDevtools />
 </QueryClientProvider>
 
 <!-- svelte-ignore css_unused_selector -->

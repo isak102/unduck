@@ -15,12 +15,15 @@
     queryKey: ["search-bangs", searchQuery],
     enabled: searchQuery.length > 0,
     queryFn: async (): Promise<Bang[]> => {
-      const normalizedQuery = searchQuery.toLowerCase();
-
       return bangs
         .filter((bang) => {
           const bangName = bang.s.toLowerCase();
           const bangCommand = `!${bang.t.toLowerCase()}`;
+          const normalizedQuery = searchQuery.toLowerCase();
+
+          if (normalizedQuery.startsWith("!")) {
+            return bangCommand.includes(normalizedQuery);
+          }
 
           return (
             bangName.includes(normalizedQuery) ||
@@ -47,6 +50,7 @@
             <span class="bang-command">!{bang.t}</span>
           </div>
           <p class="bang-description">{bang.d}</p>
+          <p class="bang-url">{bang.u}</p>
         </li>
       {/each}
     </ul>
@@ -63,6 +67,7 @@
   .scroll-container {
     max-height: 400px;
     overflow-y: auto;
+    overflow-wrap: break-word;
     margin-top: 1rem;
     border: 1px solid #eee;
     border-radius: 4px;
@@ -99,6 +104,11 @@
   }
 
   .bang-description {
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  .bang-url {
     font-size: 0.9rem;
     color: #555;
   }
