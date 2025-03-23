@@ -3,8 +3,12 @@
   "workspaces": {
     "": {
       "name": "unduck",
+      "dependencies": {
+        "@tanstack/svelte-query": "https://pkg.pr.new/@tanstack/svelte-query@8c9ce998d84573adafedcbac4488159cd75e2473",
+      },
       "devDependencies": {
         "@sveltejs/vite-plugin-svelte": "^5.0.3",
+        "@tanstack/svelte-query-devtools": "https://pkg.pr.new/@tanstack/svelte-query-devtools@8c9ce998d84573adafedcbac4488159cd75e2473",
         "@tsconfig/svelte": "^5.0.4",
         "prettier": "^3.5.3",
         "prettier-plugin-svelte": "^3.3.3",
@@ -314,6 +318,14 @@
     "@sveltejs/vite-plugin-svelte": ["@sveltejs/vite-plugin-svelte@5.0.3", "", { "dependencies": { "@sveltejs/vite-plugin-svelte-inspector": "^4.0.1", "debug": "^4.4.0", "deepmerge": "^4.3.1", "kleur": "^4.1.5", "magic-string": "^0.30.15", "vitefu": "^1.0.4" }, "peerDependencies": { "svelte": "^5.0.0", "vite": "^6.0.0" } }, "sha512-MCFS6CrQDu1yGwspm4qtli0e63vaPCehf6V7pIMP15AsWgMKrqDGCPFF/0kn4SP0ii4aySu4Pa62+fIRGFMjgw=="],
 
     "@sveltejs/vite-plugin-svelte-inspector": ["@sveltejs/vite-plugin-svelte-inspector@4.0.1", "", { "dependencies": { "debug": "^4.3.7" }, "peerDependencies": { "@sveltejs/vite-plugin-svelte": "^5.0.0", "svelte": "^5.0.0", "vite": "^6.0.0" } }, "sha512-J/Nmb2Q2y7mck2hyCX4ckVHcR5tu2J+MtBEQqpDrrgELZ2uvraQcK/ioCV61AqkdXFgriksOKIceDcQmqnGhVw=="],
+
+    "@tanstack/query-core": ["@tanstack/query-core@https://pkg.pr.new/TanStack/query/@tanstack/query-core@8c9ce998d84573adafedcbac4488159cd75e2473", {}],
+
+    "@tanstack/query-devtools": ["@tanstack/query-devtools@https://pkg.pr.new/TanStack/query/@tanstack/query-devtools@8c9ce998d84573adafedcbac4488159cd75e2473", {}],
+
+    "@tanstack/svelte-query": ["@tanstack/svelte-query@https://pkg.pr.new/@tanstack/svelte-query@8c9ce998d84573adafedcbac4488159cd75e2473", { "dependencies": { "@tanstack/query-core": "https://pkg.pr.new/TanStack/query/@tanstack/query-core@8c9ce998d84573adafedcbac4488159cd75e2473" }, "peerDependencies": { "svelte": "^5.0.0" } }],
+
+    "@tanstack/svelte-query-devtools": ["@tanstack/svelte-query-devtools@https://pkg.pr.new/@tanstack/svelte-query-devtools@8c9ce998d84573adafedcbac4488159cd75e2473", { "dependencies": { "@tanstack/query-devtools": "https://pkg.pr.new/TanStack/query/@tanstack/query-devtools@8c9ce998d84573adafedcbac4488159cd75e2473", "esm-env": "^1.2.1" }, "peerDependencies": { "@tanstack/svelte-query": "^5.66.2", "svelte": "^5.0.0" } }],
 
     "@tsconfig/svelte": ["@tsconfig/svelte@5.0.4", "", {}, "sha512-BV9NplVgLmSi4mwKzD8BD/NQ8erOY/nUE/GpgWe2ckx+wIQF5RyRirn/QsSSCPeulVpc3RA/iJt6DpfTIZps0Q=="],
 

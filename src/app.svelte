@@ -1,42 +1,67 @@
 <script lang="ts">
+  import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
+  import BangSearchResults from "./bang-search-results.svelte";
+
   const clipboardImg = "/clipboard.svg";
   const clipboardCheckImg = "/clipboard-check.svg";
   const searchEngineUrl = "https://unduck-improved.vercel.app/?q=%s";
 
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        enabled: window !== undefined,
+        experimental_prefetchInRender: true,
+      },
+    },
+  });
+
   let currentImg = $state(clipboardImg);
+  let searchBangInput = $state("");
 </script>
 
-<div
-  style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 55vh;"
->
-  <div class="content-container">
-    <h1>Und*ck Improved</h1>
-    <p>
-      DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to
-      your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank"
-        >all of DuckDuckGo's bangs.</a
-      >
-    </p>
-    <div class="url-container">
-      <input type="text" class="url-input" value={searchEngineUrl} readonly />
-      <button
-        class="copy-button"
-        onclick={() => {
-          navigator.clipboard.writeText(searchEngineUrl);
-          currentImg = clipboardCheckImg;
-          setTimeout(() => {
-            currentImg = clipboardImg;
-          }, 2000);
-        }}
-      >
-        <img src={currentImg} alt="Copy" />
-      </button>
+<QueryClientProvider client={queryClient}>
+  <div
+    style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 2rem;"
+  >
+    <div class="content-container">
+      <h1>Und*ck Improved</h1>
+      <p>
+        DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to
+        your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank"
+          >all of DuckDuckGo's bangs.</a
+        >
+      </p>
+      <div class="url-container">
+        <input type="text" class="url-input" value={searchEngineUrl} readonly />
+        <button
+          class="copy-button"
+          onclick={() => {
+            navigator.clipboard.writeText(searchEngineUrl);
+            currentImg = clipboardCheckImg;
+            setTimeout(() => {
+              currentImg = clipboardImg;
+            }, 2000);
+          }}
+        >
+          <img src={currentImg} alt="Copy" />
+        </button>
+      </div>
+      <div class="search-container">
+        <h2>Search Bangs</h2>
+        <input
+          class="url-input"
+          type="text"
+          placeholder="Search bangs..."
+          bind:value={searchBangInput}
+        />
+        <BangSearchResults searchQuery={searchBangInput} />
+      </div>
     </div>
+    <footer class="footer">
+      <a href="https://github.com/isak102/unduck" target="_blank">github</a>
+    </footer>
   </div>
-  <footer class="footer">
-    <a href="https://github.com/isak102/unduck" target="_blank">github</a>
-  </footer>
-</div>
+</QueryClientProvider>
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
@@ -51,9 +76,12 @@
 
   /* Add this new style */
   .content-container {
+    display: flex;
+    flex-direction: column;
     max-width: 36rem;
     text-align: center;
     padding: 0 8px;
+    gap: 0.5rem;
   }
 
   /* Update url-input width to be 100% since container will control max width */
@@ -111,5 +139,12 @@
 
   .footer a:hover {
     color: #333;
+  }
+
+  .search-container {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 </style>
