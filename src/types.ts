@@ -16,4 +16,6 @@ export interface Bang {
   c?: string;
   /** Subcategory (optional) */
   sc?: string;
+  /** Wether the bang is custom or not (optional) */
+  custom?: boolean;
 }

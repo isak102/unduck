@@ -9,6 +9,7 @@ export const customBangs: Bang[] = [
     sc: "AI",
     t: "t3",
     u: "https://www.t3.chat/new?q={{{s}}}",
+    custom: true,
   },
   {
     s: "GMail",
@@ -16,5 +17,6 @@ export const customBangs: Bang[] = [
     u: "https://mail.google.com/mail/u/0/#search/{{{s}}}",
     d: "www.gmail.com",
     r: 0,
+    custom: true,
   },
 ];

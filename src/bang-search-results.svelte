@@ -44,9 +44,14 @@
   <div class="scroll-container">
     <ul class="bang-results">
       {#each query.data as bang}
-        <li class="bang-item">
+        <li class="bang-item {bang.custom ? 'custom-bang' : ''}">
           <div class="bang-header">
-            <span class="bang-name">{bang.s}</span>
+            <span class="bang-name">
+              {bang.s}
+              {#if bang.custom}
+                <span class="custom-indicator">[CUSTOM]</span>
+              {/if}
+            </span>
             <span class="bang-command">!{bang.t}</span>
           </div>
           <p class="bang-description">{bang.d}</p>
@@ -60,6 +65,16 @@
 {/if}
 
 <style>
+  .custom-bang {
+    background-color: #e0f7fa; /* Slightly bluish background for custom bangs */
+  }
+
+  .custom-indicator {
+    font-size: 0.8rem; /* Subtle font size */
+    color: #888; /* Subtle color */
+    font-weight: 300; /* Lighter font weight */
+  }
+
   * {
     margin: 0;
   }
@@ -86,6 +101,10 @@
 
   .bang-item:hover {
     background-color: #f5f5f5;
+  }
+
+  .bang-item.custom-bang:hover {
+    background-color: #d1e8eb; /* Slightly darker bluish background for custom bangs on hover */
   }
 
   .bang-header {
