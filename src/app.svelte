@@ -1,30 +1,34 @@
 <script lang="ts">
-  const clipboardImg = '/clipboard.svg';
-  const clipboardCheckImg = '/clipboard-check.svg';
-  const searchEngineUrl = 'https://unduck-improved.vercel.app/?q=%s';
+  const clipboardImg = "/clipboard.svg";
+  const clipboardCheckImg = "/clipboard-check.svg";
+  const searchEngineUrl = "https://unduck-improved.vercel.app/?q=%s";
 
   let currentImg = $state(clipboardImg);
 </script>
 
-
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 55vh;">
+<div
+  style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 55vh;"
+>
   <div class="content-container">
     <h1>Und*ck Improved</h1>
-    <p>DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank">all of DuckDuckGo's bangs.</a></p>
-    <div class="url-container"> 
-      <input 
-        type="text"
-        class="url-input"
-        value={searchEngineUrl}
-        readonly 
-      />
-      <button class="copy-button" onclick={() => {
-        navigator.clipboard.writeText(searchEngineUrl);
-        currentImg=clipboardCheckImg;
-        setTimeout(() => {
-          currentImg=clipboardImg;
-        }, 2000);
-      }} >
+    <p>
+      DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to
+      your browser. Enables <a href="https://duckduckgo.com/bang.html" target="_blank"
+        >all of DuckDuckGo's bangs.</a
+      >
+    </p>
+    <div class="url-container">
+      <input type="text" class="url-input" value={searchEngineUrl} readonly />
+      <button
+        class="copy-button"
+        onclick={() => {
+          navigator.clipboard.writeText(searchEngineUrl);
+          currentImg = clipboardCheckImg;
+          setTimeout(() => {
+            currentImg = clipboardImg;
+          }, 2000);
+        }}
+      >
         <img src={currentImg} alt="Copy" />
       </button>
     </div>
@@ -36,8 +40,6 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-  /* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"); */
-
   /* Font fallback that closely matches Inter metrics */
   @font-face {
     font-family: "Inter Fallback";
