@@ -1,21 +1,20 @@
-import { bangs } from "./bang";
 import { mount } from "svelte";
+import { bangs } from "./bang/bangs";
 import App from "./app.svelte";
-
-function noSearchDefaultPageRender() {
-  mount(App, {
-    target: document.querySelector("#app")!,
-  });
-}
 
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
 const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
 
+/// Redirect to the search engine if the query has a bang
 function getBangredirectUrl() {
   const url = new URL(window.location.href);
   const query = url.searchParams.get("q")?.trim() ?? "";
+
   if (!query) {
-    noSearchDefaultPageRender();
+    mount(App, {
+      target: document.querySelector("#app")!,
+    });
+
     return null;
   }
 
@@ -39,10 +38,7 @@ function getBangredirectUrl() {
   return searchUrl;
 }
 
-function doRedirect() {
-  const searchUrl = getBangredirectUrl();
-  if (!searchUrl) return;
+const searchUrl = getBangredirectUrl();
+if (searchUrl) {
   window.location.replace(searchUrl);
 }
-
-doRedirect();

@@ -1,15 +1,6 @@
 // This file was (mostly) ripped from https://duckduckgo.com/bang.js
 
-export const bangs = [
-  {
-    c: "AI",
-    d: "www.t3.chat",
-    r: 0,
-    s: "T3 Chat",
-    sc: "AI",
-    t: "t3",
-    u: "https://www.t3.chat/new?q={{{s}}}",
-  },
+export const ddgBangs = [
   {
     c: "Tech",
     d: "www.01net.com",
