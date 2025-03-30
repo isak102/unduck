@@ -31,4 +31,11 @@ export const customBangs: Bang[] = [
     d: "fotmob.com",
     r: 0,
   },
+  {
+    s: "TV4 Play",
+    t: "tv4",
+    u: "https://www.tv4play.se/sok/{{{s}}}",
+    d: "tv4play.se",
+    r: 0,
+  },
 ];
