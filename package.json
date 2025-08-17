@@ -24,6 +24,7 @@
     "vite-plugin-pwa": "^0.21.1"
   },
   "dependencies": {
-    "@tanstack/svelte-query": "https://pkg.pr.new/@tanstack/svelte-query@8c9ce998d84573adafedcbac4488159cd75e2473"
+    "@tanstack/svelte-query": "https://pkg.pr.new/@tanstack/svelte-query@8c9ce998d84573adafedcbac4488159cd75e2473",
+    "@xmldom/xmldom": "^0.8.11"
   }
 }
